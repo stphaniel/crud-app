@@ -81,7 +81,7 @@ const filteredEmployees = computed(() => {
                 </Link>
                 <div>
                     <div class="mb-6">
-                        <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Employee No.</label>
+                        <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Employee</label>
                         <select
                             name="employee_id"
                             id="employee_id"

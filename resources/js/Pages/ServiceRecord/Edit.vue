@@ -3,32 +3,36 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-  employees: Array,
-  service_record: Object
+    employees: Array,
+    service_record: Object, // Change to a single object
 });
+
 
 const form = useForm({
-  date_from: null,
-  date_to: null,
-  employee_id: null,
-  position: null,
-  salary: null
+    date_from: null,
+    date_to: null,
+    employee_id: null,
+    position: null,
+    salary: null,
 });
 
+
+
 if (props.service_record) {
-  form.date_from = props.service_record.date_from;
-  form.date_to = props.service_record.date_to;
-  form.employee_id = props.service_record.employee_id; // Set the selected employee ID
-  form.position = props.service_record.position;
-  form.salary = props.service_record.salary;
+    form.date_from = props.service_record.date_from;
+    form.date_to = props.service_record.date_to;
+    form.employee_id = props.service_record.employee_id;
+    form.position = props.service_record.position;
+    form.salary = props.service_record.salary;
 }
 
+
 const save = () => {
-  form.put(route("service_record.update", props.service_record.id));
+    form.put(route("service_record.update", service_record.id));
 };
+
+
 </script>
-
-
 
 <template>
     <AuthenticatedLayout>

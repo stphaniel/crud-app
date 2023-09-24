@@ -7,6 +7,8 @@ import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
 
+
+
 const showingNavigationDropdown = ref(false);
 
 const logout = async () => {
@@ -20,6 +22,7 @@ const logout = async () => {
 
 const props = defineProps({
     users: Array,
+    
 });
 
 
@@ -27,6 +30,7 @@ const props = defineProps({
 
 <template>
     <div>
+        
         <div class="min-h-screen bg-gray-100">
             <button
                 data-drawer-target="default-sidebar"
@@ -71,7 +75,7 @@ const props = defineProps({
 
                         <li>
                             <div class=" text-gray py-2 px-4 text-center font-semibold">
-                                Hi, {{ name }}
+                                Hi, 
                               </div>
                         </li>
                         <li>
