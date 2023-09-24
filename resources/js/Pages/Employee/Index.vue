@@ -85,6 +85,7 @@ console.log(props.employees);
                             <th scope="col" class="px-6 py-3">
                                 <span class="px-6 py-3">Manage</span>
                             </th>
+                            
                         </tr>
                     </thead>
                     <tbody>

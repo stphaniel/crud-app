@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date_from');
             $table->date('date_to')->nullable();
-            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('employee_id')->unique();
             $table->string('position');
             $table->bigInteger('salary');
             $table->timestamps();

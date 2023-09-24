@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/service_record/create', [ServiceRecordController::class, 'create'])->name('service_record.create');
     Route::post('/service_record/store', [ServiceRecordController::class, 'store'])->name('service_record.store');
     Route::delete('/service_record/destroy/{service_record}', [ServiceRecordController::class, 'destroy'])->name('service_record.destroy');
-    Route::get('/service_record/edit/{serviceRecord}', [ServiceRecordController::class, 'edit'])->name('service_record.edit');
+    Route::get('/service_record/edit/{service_record}', [ServiceRecordController::class, 'edit'])->name('service_record.edit');
     Route::put('/service_record/update/{service_record}', [ServiceRecordController::class, 'update'])->name('service_record.update');
 
     Route::resource('service_record', ServiceRecordController::class);

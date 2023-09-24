@@ -38,29 +38,41 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
 
     return `${years} years, ${months} months, ${days} days`;
 };
-
 </script>
 
 <template>
     <AuthenticatedLayout>
         <Head title="Service Records" />
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Service Records</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Service Records
+            </h2>
         </template>
         <div class="max-w-7xl mx-auto pt-8 px-8">
             <div class="flex justify-end">
                 <Link
-                    class="flex items-center bg-gray-500 px-2 py-2 text-white rounded-lg hover:bg-gray-900"
-                    :href="route('service_record.create')"
-                >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                  </svg>
-                  
-                    Add Record
-                </Link>
+  class="flex items-center bg-gray-500 px-2 py-2 text-white rounded-lg hover:bg-gray-900"
+  :href="route('service_record.create')"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="w-6 h-6 mr-2" 
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+    />
+  </svg>
+
+  Add Record
+</Link>
+
             </div>
-            
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table
@@ -69,24 +81,19 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                     <thead
                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                     >
-                    <tr>
-                        <th scope="col" class="px-6 py-3">Employee ID</th>
-                        <th scope="col" class="px-6 py-3">Date From</th>
-                        <th scope="col" class="px-6 py-3">Date To</th>
-                        <th scope="col" class="px-6 py-3">Position</th>
-                        <th scope="col" class="px-6 py-3">Salary</th>
-                        <th scope="col" class="px-6 py-3">Years with Company</th>
-                        <th scope="col" class="px-6 py-3">
-                            <span class="sr-only">Action</span>
-                        </th>
-                    </tr>
-                   
-                    
-                    
-                    
-                    
-                    
-                    
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Employee ID</th>
+                            <th scope="col" class="px-6 py-3">Date From</th>
+                            <th scope="col" class="px-6 py-3">Date To</th>
+                            <th scope="col" class="px-6 py-3">Position</th>
+                            <th scope="col" class="px-6 py-3">Salary</th>
+                            <th scope="col" class="px-6 py-3">
+                                Years with Company
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                <span class="sr-only">Action</span>
+                            </th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr
@@ -116,20 +123,20 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                                 {{ service_records.salary }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ calculateYearsWithCompany(service_records.date_from, service_records.date_to) }}
+                                {{
+                                    calculateYearsWithCompany(
+                                        service_records.date_from,
+                                        service_records.date_to
+                                    )
+                                }}
                             </td>
 
                             <td class="px-6 py-4 text-right">
                                 <div class="flex gap-2">
                                     <Link
-                                    
-                                    :href="
-                                    route('service_record.edit', {
-                                      service_record: service_records.employee_id,
-                                    })
-                                  "
-                                
-                              
+                                    :href="route('service_record.edit', {
+                                        service_record: service_records.id // Assuming 'id' is the key for model binding
+                                    })"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         ><svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -148,12 +155,12 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                                     </Link>
 
                                     <Link
-                                    
-                                    :href="
-                                    route('service_record.destroy', {
-                                      service_record: service_records.id,
-                                    })
-                                  "
+                                        :href="
+                                            route('service_record.destroy', {
+                                                service_record:
+                                                    service_records.id,
+                                            })
+                                        "
                                         method="delete"
                                         as="button"
                                         class="font-medium text-red-800 dark:text-red-500 hover:underline"

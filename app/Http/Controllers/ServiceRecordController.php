@@ -14,6 +14,7 @@ class ServiceRecordController extends Controller
      */
     public function index()
     {
+        
         $service_records = ServiceRecord::all();
     
         return Inertia::render('ServiceRecord/Index', [
@@ -62,23 +63,23 @@ class ServiceRecordController extends Controller
     }
 
    
-    public function edit(ServiceRecord $service_records)
+    public function edit($id)
     {
-       
+        $service_record = ServiceRecord::findOrFail($id); // Fetch the service record
+    
         return Inertia::render('ServiceRecord/Edit', [
-            'service_records' => $service_records
+            'service_record' => $service_record
         ]);
     }
-
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, ServiceRecord $service_records)
     {
-     
+         
         $request->validate([
-            'employee_id' => 'required|exists:employees,id',
+            'employee_id' => 'required|exists:employees,id|unique:service_records', // Check for uniqueness in the 'service_records' table
             'date_from' => 'required|date',
             'date_to' => 'nullable|date|after_or_equal:date_from',
             'position' => 'required|max:255',

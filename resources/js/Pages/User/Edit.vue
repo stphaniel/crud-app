@@ -109,7 +109,7 @@ const save = () => {
                         <input
                             type="password"
                             id="password"
-                            v-model="form.errors.password"
+                            v-model="form.password"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
                             required
@@ -125,7 +125,7 @@ const save = () => {
                         <input
                             type="password"
                             id="password_confirmation"
-                            v-model="form.errors.password_confirmation"
+                            v-model="form.password_confirmation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
                             required

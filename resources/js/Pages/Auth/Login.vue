@@ -36,12 +36,12 @@ const submit = () => {
             <div class="flex flex-col items-center md:flex-row">
                 <div class="w-full space-y-5 md:w-3/5 md:pr-16">
                     <p class="font-medium text-blue-500 uppercase">
-                        Building Businesses
+                       EMPLOYEE AND SERVICE RECORD MANAGEMENT SYSTEM
                     </p>
                     <h2
                         class="text-2xl font-extrabold leading-none text-black sm:text-3xl md:text-5xl"
                     >
-                        Changing The Way People Do Business.
+                        Cloudify Web Solutions
                     </h2>
                     <p class="text-xl text-gray-600 md:pr-16">
                         Learn how to engage with your visitors and teach them
@@ -90,38 +90,49 @@ const submit = () => {
                                 />
                             </div>
                             <div class="block mt-4">
+                                <!-- Remember me checkbox -->
                                 <label class="flex items-center">
                                     <Checkbox
                                         name="remember"
                                         v-model:checked="form.remember"
                                     />
-                                    <span class="ml-2 text-sm text-gray-600"
-                                        >Remember me</span
-                                    >
+                                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
                                 </label>
-                            </div>
-                            <div class="flex items-center justify-end mt-4">
-                                <Link
-                                    v-if="canResetPassword"
-                                    :href="route('password.request')"
-                                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                    Forgot your password?
-                                </Link>
-                                <Link
-                                    :href="route('register')"
-                                    class="ml-4 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                    Create Account
-                                </Link>
+                            
+                                <!-- Forgot password and Create Account links -->
+                                <div class="flex items-center justify-between mt-2">
+                                    <Link
+                                        v-if="canResetPassword"
+                                        :href="route('password.request')"
+                                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Forgot your password?
+                                    </Link>
+                            
+                                    <Link
+                                        :href="route('register')"
+                                        class="ml-4 underline text-sm text-blue-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Create Account
+                                    </Link>
+                                </div>
+                            
+                                <!-- Log in button -->
+
                                 <PrimaryButton
-                                    class="ml-4"
+                                    class="mt-4 ml-2 float-right"
                                     :class="{ 'opacity-25': form.processing }"
                                     :disabled="form.processing"
                                 >
                                     Log in
                                 </PrimaryButton>
                             </div>
+                         
+                            
+                            
+                            
+                            
+                            
                         </form>
                     </div>
                 </div>
