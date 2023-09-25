@@ -11,9 +11,8 @@ console.log(user);
 const form = useForm({
     name: user.name,
     email: user.email,
-    password: '',
-    password_confirmation:'',
-
+    password: "",
+    password_confirmation: "",
 });
 
 const save = () => {
@@ -26,30 +25,30 @@ const save = () => {
         <Head title="Add User" />
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-               Update User
+                Update User
             </h2>
         </template>
-        <div class="max-w-7xl mx-auto  pt-8 px-5">
+        <div class="max-w-7xl mx-auto pt-8 px-5">
             <form class="w-full bg-white p-4" @submit.prevent="save">
                 <Link
-                :href="route('user.index')"
-                class="flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    class="w-6 h-6 mr-2 cursor-pointer"
-                    @click="$inertia.visit(route('user.index'))"
+                    :href="route('user.index')"
+                    class="flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                    />
-                </svg>
-            </Link>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        class="w-6 h-6 mr-2 cursor-pointer"
+                        @click="$inertia.visit(route('user.index'))"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                        />
+                    </svg>
+                </Link>
                 <div>
                     <div class="mb-6">
                         <label
@@ -82,9 +81,6 @@ const save = () => {
                             required
                         />
                     </div>
-
-                  
-
                 </div>
                 <div class="flex justify-end">
                     <button
@@ -105,7 +101,8 @@ const save = () => {
                         <label
                             for="password"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
-                        >New Password</label>
+                            >New Password</label
+                        >
                         <input
                             type="password"
                             id="password"
@@ -116,12 +113,13 @@ const save = () => {
                             minlength="8"
                         />
                     </div>
-                    
+
                     <div class="mb-6">
                         <label
                             for="password_confirmation"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
-                        >Confirm Password</label>
+                            >Confirm Password</label
+                        >
                         <input
                             type="password"
                             id="password_confirmation"
@@ -129,11 +127,10 @@ const save = () => {
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
                             required
-                            :pattern="form.password" 
+                            :pattern="form.password"
                             title="Passwords do not match"
                         />
                     </div>
-                    
                 </div>
                 <div class="flex justify-end">
                     <button

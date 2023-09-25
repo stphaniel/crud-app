@@ -16,5 +16,10 @@ class ServiceRecord extends Model
         'position',
         'salary',
     ];
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id', 'id');
+    }
+
 
 }

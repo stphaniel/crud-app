@@ -9,6 +9,11 @@ class Employee extends Model
 {
     use HasFactory;
 
+    public function serviceRecords()
+{
+    return $this->hasMany(ServiceRecord::class);
+}
+
     protected $fillable= [
         'employee_number',
          'first_name',
@@ -18,5 +23,10 @@ class Employee extends Model
          'birth_date',
          'marital_status'
     ];
+
+    public function employee()
+{
+    return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
+}
 }
 

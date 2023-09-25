@@ -7,6 +7,8 @@ const props = defineProps({
     service_record: Object, // Change to a single object
 });
 
+console.log("Props.employees:", props.employees);
+console.log("Props.service_record:", props.service_record);
 
 const form = useForm({
     date_from: null,
@@ -16,8 +18,6 @@ const form = useForm({
     salary: null,
 });
 
-
-
 if (props.service_record) {
     form.date_from = props.service_record.date_from;
     form.date_to = props.service_record.date_to;
@@ -26,13 +26,13 @@ if (props.service_record) {
     form.salary = props.service_record.salary;
 }
 
-
 const save = () => {
-    form.put(route("service_record.update", service_record.id));
+    console.log("Save function called");
+    form.put(route("service_record.update", { service_record: props.service_record.id }))
+      
 };
-
-
 </script>
+
 
 <template>
     <AuthenticatedLayout>
@@ -64,7 +64,29 @@ const save = () => {
                     </svg>
                 </Link>
                 <div>
-                    <div class="mb-6">
+                      
+                    <!-- <div class="mb-6">
+                        <label
+                            for="date_from"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
+                        >
+                          Employee No
+                        </label>
+                        <input
+                            type="text"
+                            name="" 
+                            id=""
+                            
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder=""
+                            required
+                        />
+                        <span
+                            v-if="form.errors.date_from"
+                            class="text-red-500 text-xs"
+                        >{{ form.errors.date_from }}</span>
+                    </div> -->
+                    <!-- <div class="mb-6">
                         <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Select Employee</label>
                         <select
                             name="employee_id"
@@ -75,14 +97,15 @@ const save = () => {
                         >
                             <option value="" disabled>Select an employee</option>
                             <option
-                            v-for="employee in props.employees"
-                            :key="employee.id"
-                            :value="employee.id"
-                        >
-                            {{ employee.employee_number }} - {{ employee.first_name }} {{ employee.last_name }}
-                        </option>
+                                v-for="employee in props.employees"
+                                :key="employee.id"
+                                :value="employee.id"
+                            >
+                                {{ employee.employee_number }}
+                            </option>
                         </select>
                     </div>
+                     -->
                 
                     
                     <div class="mb-6">
@@ -132,13 +155,13 @@ const save = () => {
 
                     <div class="mb-6">
                         <label
-                            for="email"
+                            for="position"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
                             >Position</label
                         >
                         <input
                             type="text"
-                            id="email"
+                            id="position"
                             v-model="form.position"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""

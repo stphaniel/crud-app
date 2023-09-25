@@ -15,7 +15,7 @@ class ServiceRecordController extends Controller
     public function index()
     {
         
-        $service_records = ServiceRecord::all();
+      $service_records = ServiceRecord::with('employee')->get();
     
         return Inertia::render('ServiceRecord/Index', [
             'service_records' => $service_records,
@@ -62,24 +62,24 @@ class ServiceRecordController extends Controller
         //
     }
 
-   
     public function edit($id)
     {
-        $service_record = ServiceRecord::findOrFail($id); // Fetch the service record
+        $service_record = ServiceRecord::with('employee')->findOrFail($id);
     
         return Inertia::render('ServiceRecord/Edit', [
             'service_record' => $service_record
         ]);
     }
 
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, ServiceRecord $service_records)
     {
-         
+      
         $request->validate([
-            'employee_id' => 'required|exists:employees,id|unique:service_records', // Check for uniqueness in the 'service_records' table
+            'employee_id' => 'required|exists:employees,id',
             'date_from' => 'required|date',
             'date_to' => 'nullable|date|after_or_equal:date_from',
             'position' => 'required|max:255',
@@ -87,9 +87,13 @@ class ServiceRecordController extends Controller
         ]);
 
 
-        $service_records->update($request->all());
-
-        return redirect()->to(route('service_records.index'));
+        $service_records->update([
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to,
+            'position' => $request->position,
+            'salary' => $request->salary,
+        ]);
+        return redirect()->to(route('service_record.index'));
        
     }
 

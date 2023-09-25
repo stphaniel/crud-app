@@ -7,37 +7,7 @@ const props = defineProps({
 });
 console.log(props.service_records);
 
-const calculateYearsWithCompany = (dateFrom, dateTo) => {
-    if (!dateFrom || !dateTo) return null; // Handle missing dates
 
-    const fromDate = new Date(dateFrom);
-    const toDate = new Date(dateTo);
-
-    const yearDiff = toDate.getFullYear() - fromDate.getFullYear();
-    const monthDiff = toDate.getMonth() - fromDate.getMonth();
-    const dayDiff = toDate.getDate() - fromDate.getDate();
-
-    let years = yearDiff;
-    let months = monthDiff;
-    let days = dayDiff;
-
-    // Adjust for negative values
-    if (dayDiff < 0) {
-        const tempFromDate = new Date(fromDate);
-        tempFromDate.setMonth(fromDate.getMonth() + 1);
-        days = (toDate - tempFromDate) / (1000 * 60 * 60 * 24);
-    }
-
-    if (monthDiff < 0) {
-        years--;
-        months = 12 + monthDiff;
-    }
-
-    // Calculate remaining days
-    days = days % 30; // Assuming 30 days per month
-
-    return `${years} years, ${months} months, ${days} days`;
-};
 </script>
 
 <template>
@@ -50,7 +20,7 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
         </template>
         <div class="max-w-7xl mx-auto pt-8 px-8">
             <div class="flex justify-end">
-                <Link
+                <!-- <Link
   class="flex items-center bg-gray-500 px-2 py-2 text-white rounded-lg hover:bg-gray-900"
   :href="route('service_record.create')"
 >
@@ -70,7 +40,7 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
   </svg>
 
   Add Record
-</Link>
+</Link> -->
 
             </div>
 
@@ -82,7 +52,8 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                     >
                         <tr>
-                            <th scope="col" class="px-6 py-3">Employee ID</th>
+                            <th scope="col" class="px-6 py-3">ID</th>
+                            <th scope="col" class="px-6 py-3">Employe No</th>
                             <th scope="col" class="px-6 py-3">Date From</th>
                             <th scope="col" class="px-6 py-3">Date To</th>
                             <th scope="col" class="px-6 py-3">Position</th>
@@ -107,6 +78,9 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                             >
                                 {{ service_records.employee_id }}
                             </th>
+                            <td class="px-6 py-4">
+                                <!-- {{ service_records.position }} -->
+                            </td>
                             <th
                                 scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -123,12 +97,7 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                                 {{ service_records.salary }}
                             </td>
                             <td class="px-6 py-4">
-                                {{
-                                    calculateYearsWithCompany(
-                                        service_records.date_from,
-                                        service_records.date_to
-                                    )
-                                }}
+                             
                             </td>
 
                             <td class="px-6 py-4 text-right">

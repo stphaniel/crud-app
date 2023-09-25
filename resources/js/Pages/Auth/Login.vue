@@ -50,6 +50,7 @@ const submit = () => {
                     </p>
                 </div>
 
+               
                 <div class="w-full mt-16 md:mt-0 md:w-2/5">
                     <div
                         class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-b-2 border-gray-300 shadow-2xl px-7 rounded-none"
@@ -138,5 +139,7 @@ const submit = () => {
                 </div>
             </div>
         </div>
+  
     </section>
+
 </template>
