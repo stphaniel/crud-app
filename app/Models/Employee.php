@@ -24,9 +24,6 @@ class Employee extends Model
          'marital_status'
     ];
 
-    public function employee()
-{
-    return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
-}
+ 
 }
 

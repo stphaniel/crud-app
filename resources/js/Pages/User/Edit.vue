@@ -112,6 +112,11 @@ const save = () => {
                             required
                             minlength="8"
                         />
+                        <span
+                        v-if="form.errors.password"
+                        class="text-red-500 text-xs"
+                      >{{ form.errors.password }}</span>
+                  
                     </div>
 
                     <div class="mb-6">
@@ -127,9 +132,12 @@ const save = () => {
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
                             required
-                            :pattern="form.password"
-                            title="Passwords do not match"
+                           
                         />
+                         <span
+                        v-if="form.errors.password_confirmation"
+                        class="text-red-500 text-xs"
+                      >{{ form.errors.password_confirmation }}</span>
                     </div>
                 </div>
                 <div class="flex justify-end">

@@ -38,42 +38,23 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'employee_number' => 'required|unique:employees',
             'first_name' => 'required|max:255',
             'middle_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'birth_date' => 'required|date|before:today',
-            'gender' => 'required',
-            'marital_status' => 'required',
-            'position' => 'required|max:255',
-            'salary' => 'required|numeric',
-            'date_from' => 'required|date',
-            'date_to' => 'nullable|date|after_or_equal:date_from',
+            'last_name' =>  'required|max:255',
+            'gender' =>  'required',
+            'birth_date' =>  'required|date|before:today',
+            'marital_status' =>  'required',
+            'employee_number' => 'required|unique:employees,employee_number',
         ]);
-    
-        // Create a new employee
-        $employee = Employee::create([
-            'employee_number' => $request->employee_number,
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name' => $request->last_name,
-            'birth_date' => $request->birth_date,
-            'gender' => $request->gender,
-            'marital_status' => $request->marital_status,
-        ]);
-    
-        // Create a new service record for the employee
-        ServiceRecord::create([
-            'date_from' => now(), // Modify this as needed
-            'date_to' => $request->date_to, // Set date_to based on user input
-            'position' => $request->position,
-            'salary' => $request->salary,
-            'employee_id' => $employee->id,
-            'employee_number' => $employee->employee_number,
-        ]);
-    
-        return redirect()->route('employee.index');
+
+        Employee::create($request->all());
+
+        return redirect()->to(route('employee.index'));
+
+        // dd($request->all());
     }
+
+
     public function getEmployeeIds()
 {
     $employeeIds = Employee::pluck('employee_number');

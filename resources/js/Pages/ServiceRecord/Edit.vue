@@ -3,11 +3,11 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    employees: Array,
+//   employees: Array,
     service_record: Object, // Change to a single object
 });
 
-console.log("Props.employees:", props.employees);
+// console.log("Props.employees:", props.employees);
 console.log("Props.service_record:", props.service_record);
 
 const form = useForm({
@@ -16,6 +16,7 @@ const form = useForm({
     employee_id: null,
     position: null,
     salary: null,
+    employee_number: '', 
 });
 
 if (props.service_record) {
@@ -24,14 +25,19 @@ if (props.service_record) {
     form.employee_id = props.service_record.employee_id;
     form.position = props.service_record.position;
     form.salary = props.service_record.salary;
+
+    // Populate the employee_number
+    if (props.service_record.employee) {
+        form.employee_number = props.service_record.employee.employee_number;
+    }
 }
 
 const save = () => {
     console.log("Save function called");
-    form.put(route("service_record.update", { service_record: props.service_record.id }))
-      
+    form.put(route("service_record.update", { service_record: props.service_record.id }));
 };
 </script>
+
 
 
 <template>
@@ -65,27 +71,55 @@ const save = () => {
                 </Link>
                 <div>
                       
-                    <!-- <div class="mb-6">
-                        <label
-                            for="date_from"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
-                        >
-                          Employee No
+                    <input
+                    type="text"
+                    name="employee_id" 
+                    id="employee_id"
+                    v-model="form.employee_id"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder=""
+                    required
+                   
+                />
+
+             
+                    <div class="mb-6">
+                        <label for="employee_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">
+                            Employee NO
                         </label>
                         <input
                             type="text"
-                            name="" 
-                            id=""
-                            
+                            name="employee_number" 
+                            id="employee_number"
+                            v-model="form.employee_number"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
                             required
+                            readonly
                         />
-                        <span
-                            v-if="form.errors.date_from"
-                            class="text-red-500 text-xs"
-                        >{{ form.errors.date_from }}</span>
-                    </div> -->
+                        <span v-if="form.errors.employee_number" class="text-red-500 text-xs">{{ form.errors.employee_number }}</span>
+                    </div>
+
+
+                  <!-- <div class="mb-6">
+                    <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Employee</label>
+                    <select
+                        name="employee_id"
+                        id="employee_id"
+                        v-model="form.employee_id"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required
+                    >
+                    <option value="" disabled>Select Employee NO.</option>
+                    <option
+                        v-for="employee in filteredEmployees"
+                        :key="employee.id"
+                        :value="employee.id"
+                    >
+                        {{ employee.employee_number }} 
+                    </option>
+                    </select>
+                </div> -->
                     <!-- <div class="mb-6">
                         <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Select Employee</label>
                         <select

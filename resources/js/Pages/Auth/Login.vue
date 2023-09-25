@@ -27,6 +27,7 @@ const submit = () => {
         onFinish: () => form.reset("password"),
     });
 };
+
 </script>
 
 <template>
@@ -44,9 +45,9 @@ const submit = () => {
                         Cloudify Web Solutions
                     </h2>
                     <p class="text-xl text-gray-600 md:pr-16">
-                        Learn how to engage with your visitors and teach them
-                        about your mission. We're revolutionizing the way
-                        customers and businesses interact.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                     </p>
                 </div>
 

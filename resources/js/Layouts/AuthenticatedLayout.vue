@@ -28,6 +28,10 @@ const props = defineProps({
 
 </script>
 
+<style>
+
+</style>
+
 <template>
     <div>
         
@@ -62,7 +66,7 @@ const props = defineProps({
                 
             >
             <div class="flex justify-center items-center pl-0 mb-5 mt-4 px-3 py-1 ">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-3 sm:w-7 sm:h-7">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 mr-3 sm:w-7 sm:h-7">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
                 </svg>
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Cloudify</span>
@@ -73,11 +77,6 @@ const props = defineProps({
                 >
                     <ul class="space-y-2">
 
-                        <li>
-                            <div class=" text-gray py-2 px-4 text-center font-semibold">
-                                Hi, 
-                              </div>
-                        </li>
                         <li>
                             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -120,11 +119,11 @@ const props = defineProps({
 
                     
                     <li class="mt-auto">
-                        <button @click="logout" class="flex items-center w-full py-2 text-sm font-medium text-gray hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 dark:bg-red-600">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 mr-2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 3h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h.01M9 12h.01M13 16h.01M13 12h.01M17 8h.01M7 8h.01"/>
-                          </svg>
+                        <button @click="logout" class="flex items-center w-full py-2 mt-20 text-sm font-medium text-gray hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 dark:bg-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 3h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h.01M9 12h.01M13 16h.01M13 12h.01M17 8h.01M7 8h.01"/>
+                            </svg>
                           Logout
                         </button>
                       </li>

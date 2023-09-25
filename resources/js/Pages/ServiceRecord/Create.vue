@@ -38,7 +38,16 @@ const save = () => {
     form.post(route("service_record.store"));
 };
 
-
+const filteredEmployees = computed(() => {
+    const query = form.employee_id ? form.employee_id.toLowerCase() : ''; // Check if form.employee_id is not null
+    return props.employees.filter(employee => {
+        const fullName = `${employee.first_name} ${employee.last_name}`;
+        return (
+            employee.employee_number.includes(query) ||
+            fullName.toLowerCase().includes(query)
+        );
+    });
+});
 </script>
 
 <template>
@@ -71,7 +80,7 @@ const save = () => {
                     </svg>
                 </Link>
                 <div>
-                    <!-- <div class="mb-6">
+                    <div class="mb-6">
                         <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Employee</label>
                         <select
                             name="employee_id"
@@ -89,7 +98,7 @@ const save = () => {
                             {{ employee.employee_number }} - {{ employee.first_name }} {{ employee.last_name }}
                         </option>
                         </select>
-                    </div> -->
+                    </div>
                 
                     
                     <div class="mb-6">
