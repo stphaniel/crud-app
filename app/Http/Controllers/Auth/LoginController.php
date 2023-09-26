@@ -20,4 +20,15 @@ class LoginController extends Controller
     
         return redirect()->route('login'); // Redirect to the login page after logout
     }
+
+    public function login()
+    {
+        Auth::login();
+    
+        // Optionally, clear any other session data or tokens
+        // Session::flush();
+        // Revoke API tokens, etc.
+    
+        return redirect()->route('login'); // Redirect to the login page after logout
+    }
 }

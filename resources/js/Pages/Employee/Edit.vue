@@ -64,26 +64,41 @@ const save = () => {
                             type="text"
                             id="employee_number"
                             v-model="form.employee_number"
+                            :class="{
+                                'border-red-500': form.errors.employee_number,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
-                            required
+                          
                         />
+                        <span
+                        v-if="form.employee_number"
+                        class="text-red-500 text-xs"
+                        >{{ form.errors.employee_number }}</span
+                    >
                     </div>
 
                     <div class="mb-6">
-                        <label
-                            for="Firstname"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
-                            >Firstname</label
-                        >
+                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">
+                          Firstname
+                        </label>
                         <input
                             type="text"
-                            id="fist_name"
+                            id="first_name"
                             v-model="form.first_name"
+                            :class="{
+                                'border-red-500': form.errors.first_name,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
-                            required
+                       
+                             
                         />
+                        <span
+                        v-if="form.errors.first_name"
+                        class="text-red-500 text-xs"
+                        >{{ form.errors.first_name }}</span
+                    >
                     </div>
 
                     <div class="mb-6">
@@ -96,26 +111,34 @@ const save = () => {
                             type="text"
                             id="middle_name"
                             v-model="form.middle_name"
+                            
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="name@flowbite.com"
-                            required
+                         
+                          
                         />
                     </div>
 
                     <div class="mb-6">
-                        <label
-                            for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
-                            >Lastname</label
-                        >
+                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">
+                          Lastname
+                        </label>
                         <input
                             type="text"
                             id="last_name"
                             v-model="form.last_name"
+                            :class="{
+                                'border-red-500': form.errors.last_name,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="name@flowbite.com"
-                            required
+                            placeholder=""
+                       
+                             
                         />
+                        <span
+                        v-if="form.errors.last_name"
+                        class="text-red-500 text-xs"
+                        >{{ form.errors.last_name }}</span
+                    >
                     </div>
 
                     <div class="mb-6">
@@ -133,8 +156,13 @@ const save = () => {
                             }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="name@flowbite.com"
-                            required
+                          
                         />
+                        <span
+                        v-if="form.errors.birth_date"
+                        class="text-red-500 text-xs"
+                        >{{ form.errors.birth_date }}</span
+                    >
                     </div>
 
                     <div class="mb-6">
@@ -143,15 +171,26 @@ const save = () => {
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
                             >Gender</label
                         >
-                        <input
-                            type="text"
+                        <select
                             id="gender"
                             v-model="form.gender"
+                            :class="{
+                                'border-red-500': form.errors.gender,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="name@flowbite.com"
-                            required
-                        />
+                        >
+                            <option selected disabled>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <span
+                        v-if="form.gender"
+                        class="text-red-500 text-xs"
+                        >{{ form.errors.gender }}</span
+                    >
                     </div>
+
 
                     <div class="mb-6">
                         <label
@@ -168,6 +207,9 @@ const save = () => {
                         <select
                             id="marital_status"
                             v-model="form.marital_status"
+                            :class="{
+                                'border-red-500': form.errors.marital_status,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >
                             <option selected>Marital Status</option>
@@ -175,6 +217,11 @@ const save = () => {
                             <option value="married">Married</option>
                             <option value="widowed">Widowed</option>
                         </select>
+                        <span
+                        v-if="form.marital_status"
+                        class="text-red-500 text-xs"
+                        >{{ form.errors.marital_status }}</span
+                    >
                     </div>
 
                   

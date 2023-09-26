@@ -78,19 +78,19 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => ['nullable', 'confirmed', 'min:8'],
+            'password' => ['required', 'confirmed', 'min:8'],
         ]);
         
-        // Update the user's name and email
+        
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
     
-        // Check if a new password is provided and update it
+  
         if ($request->filled('password')) {
             $user->update([
-                'password' => Hash::make($request->password), // Hash the new password
+                'password' => Hash::make($request->password), 
             ]);
         }
     

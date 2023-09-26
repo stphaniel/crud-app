@@ -3,8 +3,8 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-//   employees: Array,
-    service_record: Object, // Change to a single object
+    //   employees: Array,
+    service_record: Object, 
 });
 
 // console.log("Props.employees:", props.employees);
@@ -16,7 +16,7 @@ const form = useForm({
     employee_id: null,
     position: null,
     salary: null,
-    employee_number: '', 
+    employee_number: "",
 });
 
 if (props.service_record) {
@@ -26,7 +26,7 @@ if (props.service_record) {
     form.position = props.service_record.position;
     form.salary = props.service_record.salary;
 
-    // Populate the employee_number
+   
     if (props.service_record.employee) {
         form.employee_number = props.service_record.employee.employee_number;
     }
@@ -34,18 +34,20 @@ if (props.service_record) {
 
 const save = () => {
     console.log("Save function called");
-    form.put(route("service_record.update", { service_record: props.service_record.id }));
+    form.put(
+        route("service_record.update", {
+            service_record: props.service_record.id,
+        })
+    );
 };
 </script>
-
-
 
 <template>
     <AuthenticatedLayout>
         <Head title="Add Record" />
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-             Update Record
+                Update Record
             </h2>
         </template>
         <div class="max-w-7xl mx-auto pt-8 px-5">
@@ -70,26 +72,16 @@ const save = () => {
                     </svg>
                 </Link>
                 <div>
-                      
-                    <input
-                    type="text"
-                    name="employee_id" 
-                    id="employee_id"
-                    v-model="form.employee_id"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder=""
-                    required
-                   
-                />
-
-             
                     <div class="mb-6">
-                        <label for="employee_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">
-                            Employee NO
+                        <label
+                            for="employee_number"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
+                        >
+                            Employee No.
                         </label>
                         <input
                             type="text"
-                            name="employee_number" 
+                            name="employee_number"
                             id="employee_number"
                             v-model="form.employee_number"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -97,61 +89,23 @@ const save = () => {
                             required
                             readonly
                         />
-                        <span v-if="form.errors.employee_number" class="text-red-500 text-xs">{{ form.errors.employee_number }}</span>
-                    </div>
-
-
-                  <!-- <div class="mb-6">
-                    <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Employee</label>
-                    <select
-                        name="employee_id"
-                        id="employee_id"
-                        v-model="form.employee_id"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        required
-                    >
-                    <option value="" disabled>Select Employee NO.</option>
-                    <option
-                        v-for="employee in filteredEmployees"
-                        :key="employee.id"
-                        :value="employee.id"
-                    >
-                        {{ employee.employee_number }} 
-                    </option>
-                    </select>
-                </div> -->
-                    <!-- <div class="mb-6">
-                        <label for="employeeSelect" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2">Select Employee</label>
-                        <select
-                            name="employee_id"
-                            id="employee_id"
-                            v-model="form.employee_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required
+                        <span
+                            v-if="form.errors.employee_number"
+                            class="text-red-500 text-xs"
+                            >{{ form.errors.employee_number }}</span
                         >
-                            <option value="" disabled>Select an employee</option>
-                            <option
-                                v-for="employee in props.employees"
-                                :key="employee.id"
-                                :value="employee.id"
-                            >
-                                {{ employee.employee_number }}
-                            </option>
-                        </select>
                     </div>
-                     -->
-                
-                    
+
                     <div class="mb-6">
                         <label
                             for="date_from"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
                         >
-                            Date from
+                        Start Date
                         </label>
                         <input
                             type="date"
-                            name="date_from" 
+                            name="date_from"
                             id="date_from"
                             v-model="form.date_from"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -161,24 +115,24 @@ const save = () => {
                         <span
                             v-if="form.errors.date_from"
                             class="text-red-500 text-xs"
-                        >{{ form.errors.date_from }}</span>
+                            >{{ form.errors.date_from }}</span
+                        >
                     </div>
-                    
 
                     <div class="mb-6">
                         <label
                             for="birth_date"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
-                            >Date to</label
+                            >End Date</label
                         >
                         <input
-                        type="date"
-                        name="date_to" 
-                        id="date_to"
-                        v-model="form.date_to"
+                            type="date"
+                            name="date_to"
+                            id="date_to"
+                            v-model="form.date_to"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
-                            required
+                          
                         />
                         <span
                             v-if="form.errors.date_to"
@@ -218,8 +172,6 @@ const save = () => {
                             required
                         />
                     </div>
-
-                    
                 </div>
                 <div class="flex justify-end">
                     <button

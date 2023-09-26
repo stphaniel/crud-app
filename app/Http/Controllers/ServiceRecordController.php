@@ -41,10 +41,11 @@ class ServiceRecordController extends Controller
      */
     public function store(Request $request)
     {
+        
 
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
-            'date_from' => 'required|date',
+            'date_from' => 'required|date|before_or_equal:today',
             'date_to' => 'nullable|date|after_or_equal:date_from',
             'position' => 'required|max:255',
             'salary' => 'required|numeric',
@@ -62,17 +63,7 @@ class ServiceRecordController extends Controller
     {
         //
     }
-    // public function edit($id)
-    // {
-    //     $service_record = ServiceRecord::join('employees', 'service_records.employee_id', '=', 'employees.id')
-    //         ->select('employees.employee_number', 'service_records.*')
-    //         ->where('service_records.id', $id)
-    //         ->get();
-    
-    //     return Inertia::render('ServiceRecord/Edit', [
-    //         'service_record' => $service_record
-    //     ]);
-    // }
+   
 
     public function edit($id)
 {
@@ -80,7 +71,7 @@ class ServiceRecordController extends Controller
 
     return Inertia::render('ServiceRecord/Edit', [
         'service_record' => $service_record,
-        'employee_number' => $service_record->employee->employee_number, // Pass the employee_number
+        'employee_number' => $service_record->employee->employee_number, 
     ]);
 }
 
@@ -91,11 +82,10 @@ class ServiceRecordController extends Controller
     {
 
         $request->validate([
-            // 'employee_id' => 'required|exists:employees,id',
-            'date_from' => 'required|date',
+            'date_from' => 'required|date|before_or_equal:today',
             'date_to' => 'nullable|date|after_or_equal:date_from',
             'position' => 'required|max:255',
-            'salary' => 'required|numeric',
+            'salary' => 'required|numeric', 
         ]);
 
 

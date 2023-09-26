@@ -68,7 +68,7 @@ const save = () => {
 
                     <div class="mb-6">
                         <label
-                            for="email"
+                            for="text"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-2"
                             >Email</label
                         >
@@ -76,10 +76,19 @@ const save = () => {
                             type="text"
                             id="email"
                             v-model="form.email"
+                            :class="{
+                                'border-red-500': form.errors.email,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
                             required
                         />
+
+                        <span
+                        v-if="form.errors.email"
+                        class="text-red-500 text-xs"
+                        >{{ form.errors.email }}</span
+                    >
                     </div>
                 </div>
                 <div class="flex justify-end">
@@ -107,10 +116,13 @@ const save = () => {
                             type="password"
                             id="password"
                             v-model="form.password"
+                            :class="{
+                                'border-red-500': form.errors.password,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
-                            required
-                            minlength="8"
+                           
+                           
                         />
                         <span
                         v-if="form.errors.password"
@@ -129,9 +141,12 @@ const save = () => {
                             type="password"
                             id="password_confirmation"
                             v-model="form.password_confirmation"
+                            :class="{
+                                'border-red-500': form.errors.password_confirmation,
+                            }"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
-                            required
+                          
                            
                         />
                          <span

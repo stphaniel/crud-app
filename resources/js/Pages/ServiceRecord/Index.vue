@@ -7,37 +7,41 @@ const props = defineProps({
 });
 console.log(props.service_records);
 
-const calculateYearsWithCompany = (dateFrom, dateTo) => {
-    if (!dateFrom || !dateTo) return null; // Handle missing dates
+const YearsWithCompany = (dateFrom, dateTo) => {
+    if (!dateFrom) return '0 years, 0 months, 0 days'; 
 
     const fromDate = new Date(dateFrom);
-    const toDate = new Date(dateTo);
+    const toDate = dateTo ? new Date(dateTo) : new Date();
 
-    const yearDiff = toDate.getFullYear() - fromDate.getFullYear();
-    const monthDiff = toDate.getMonth() - fromDate.getMonth();
-    const dayDiff = toDate.getDate() - fromDate.getDate();
+    const calcYear = toDate.getFullYear() - fromDate.getFullYear();
+    const monthYear = toDate.getMonth() - fromDate.getMonth();
+    const dayYear = toDate.getDate() - fromDate.getDate();
 
-    let years = yearDiff;
-    let months = monthDiff;
-    let days = dayDiff;
+    let years = calcYear;
+    let months = monthYear;
+    let days = dayYear;
 
-    // Adjust for negative values
-    if (dayDiff < 0) {
+    if (dayYear < 0) {
         const tempFromDate = new Date(fromDate);
         tempFromDate.setMonth(fromDate.getMonth() + 1);
         days = (toDate - tempFromDate) / (1000 * 60 * 60 * 24);
     }
 
-    if (monthDiff < 0) {
+    if (monthYear < 0) {
         years--;
-        months = 12 + monthDiff;
+        months = 12 + monthYear;
     }
 
-    // Calculate remaining days
-    days = days % 30; // Assuming 30 days per month
+    days = days % 30; // 30 days per month
+
+   
+    years = years >= 0 ? years : 0;
+    months = months >= 0 ? months : 0;
+    days = days >= 0 ? days : 0;
 
     return `${years} years, ${months} months, ${days} days`;
 };
+
 
 </script>
 
@@ -51,27 +55,7 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
         </template>
         <div class="max-w-7xl mx-auto pt-8 px-8">
             <div class="flex justify-end">
-                <Link
-  class="flex items-center bg-gray-500 px-2 py-2 text-white rounded-lg hover:bg-gray-900"
-  :href="route('service_record.create')"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    class="w-6 h-6 mr-2" 
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
-    />
-  </svg>
-
-  Add Record
-</Link> 
+            
 
             </div>
 
@@ -83,10 +67,10 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                     >
                         <tr>
-                            <th scope="col" class="px-6 py-3">ID</th>
-                            <th scope="col" class="px-6 py-3">Employe No</th>
-                            <th scope="col" class="px-6 py-3">Date From</th>
-                            <th scope="col" class="px-6 py-3">Date To</th>
+                            <th scope="col" class="px-6 py-3"></th>
+                            <th scope="col" class="px-6 py-3">Employee No</th>
+                            <th scope="col" class="px-6 py-3">Start Date</th>
+                            <th scope="col" class="px-6 py-3">End Date</th>
                             <th scope="col" class="px-6 py-3">Position</th>
                             <th scope="col" class="px-6 py-3">Salary</th>
                             <th scope="col" class="px-6 py-3">
@@ -128,14 +112,14 @@ const calculateYearsWithCompany = (dateFrom, dateTo) => {
                                 {{ service_records.salary }}
                             </td>
                             <td class="px-6 py-4">
-                                 {{ calculateYearsWithCompany(service_records.date_from, service_records.date_to) }}
+                                 {{ YearsWithCompany(service_records.date_from, service_records.date_to) }}
                             </td>
 
                             <td class="px-6 py-4 text-right">
                                 <div class="flex gap-2">
                                     <Link
                                     :href="route('service_record.edit', {
-                                        service_record: service_records.id // Assuming 'id' is the key for model binding
+                                        service_record: service_records.id 
                                     })"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         ><svg

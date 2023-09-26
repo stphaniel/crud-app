@@ -64,17 +64,20 @@ const submit = () => {
                                 <InputLabel for="email" value="Email" />
                                 <TextInput
                                     id="email"
-                                    type="email"
+                                    type="text"
                                     class="mt-1 block w-full"
                                     v-model="form.email"
-                                    required
-                                    autofocus
-                                    autocomplete="username"
+                                    :class="{
+                                        'border-red-500': form.errors.email,
+                                    }"
+                                
+                                    autocomplete="email"
                                 />
-                                <InputError
-                                    class="mt-2"
-                                    :message="form.errors.email"
-                                />
+                                <span
+                            v-if="form.errors.email"
+                            class="text-red-500 text-xs"
+                            >{{ form.errors.email }}</span
+                        >
                             </div>
                             <div class="mt-4">
                                 <InputLabel for="password" value="Password" />
